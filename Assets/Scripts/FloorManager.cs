@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,6 +29,9 @@ public class FloorManager : MonoBehaviour
                 var floor = Instantiate(FloorPrefab, position, Quaternion.identity);
                 Floors.Add(floor.GetComponent<Floor>());
             }
+
+            var exitDoor = Floors.Last().gameObject.GetComponentInChildren<ExitDoor>(true);
+            exitDoor.gameObject.SetActive(true);
         }
     }
 
@@ -46,7 +48,7 @@ public class FloorManager : MonoBehaviour
             }
 
             List<Door> doorsSameFloorFrom = GetPossibleDoorsFrom(Floors[i]);
-            
+
             List<Door> doorsLowerFloor = i != 0 ? GetPossibleDoorsTo(Floors[i - 1]) : new List<Door>();
             List<Door> doorsSameFloorTo = GetPossibleDoorsTo(Floors[i]);
             List<Door> doorsUpperFloor = i != Floors.Count - 1 ? GetPossibleDoorsTo(Floors[i + 1]) : new List<Door>();
@@ -55,7 +57,7 @@ public class FloorManager : MonoBehaviour
             doorsLowerFloor.Shuffle();
             doorsSameFloorFrom.Shuffle();
             doorsUpperFloor.Shuffle();
-            
+
             if (doorsSameFloorFrom.Count < doorsLowerFloor.Count)
                 Debug.LogWarning("Potentially shouldn't exist");
 
@@ -99,10 +101,10 @@ public class FloorManager : MonoBehaviour
         if (amountOfAssignments == 0)
             return;
 
-        if(doorsFrom.Count == 1  && doorsTo.Count == 1)
+        if (doorsFrom.Count == 1 && doorsTo.Count == 1)
             Debug.LogWarning("Only one assignment left,  I had to allow it at this point");
 
-        while(IsAnySelfAssignment(doorsFrom, doorsTo))
+        while (IsAnySelfAssignment(doorsFrom, doorsTo))
         {
             doorsFrom.Shuffle();
             doorsTo.Shuffle();

@@ -383,8 +383,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1564352270}
   - component: {fileID: 1564352269}
-  - component: {fileID: 1564352272}
+  - component: {fileID: 1564352273}
   - component: {fileID: 1564352271}
+  - component: {fileID: 1564352272}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -416,7 +417,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60
+    FieldOfView: 177.1362
     OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -468,6 +469,27 @@ MonoBehaviour:
   FrequencyGain: 0.5
   mNoiseOffsets: {x: 25.954102, y: -681.93054, z: 916.0514}
 --- !u!114 &1564352272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564352268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb4843bae7d24943842ea23130dcd55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FramingMode: 2
+  FramingSize: 0.3
+  CenterOffset: {x: 0, y: -0.8}
+  Damping: 1
+  SizeAdjustment: 2
+  LateralAdjustment: 0
+  FovRange: {x: 1, y: 100}
+  DollyRange: {x: -100, y: 100}
+  OrthoSizeRange: {x: 1, y: 1000}
+--- !u!114 &1564352273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,9 +569,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 177.1362
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 1.6666665
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -574,7 +596,7 @@ Transform:
   m_GameObject: {fileID: 1827225342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1.3333333, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
