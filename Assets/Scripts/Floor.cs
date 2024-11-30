@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-public class Wall : MonoBehaviour
+public class Floor : MonoBehaviour
 {
     public List<Door> Doors = new();
     public void Awake()

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class WallManager : MonoBehaviour
+public class FloorManager : MonoBehaviour
 {
-    public List<Wall> Walls = new();
+    public List<Floor> Floors = new();
     public List<Door> Doors = new();
 
     public void Awake() 
@@ -17,15 +18,15 @@ public class WallManager : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < Walls.Count; i++)
+        for (int i = 0; i < Floors.Count; i++)
         {
-            List<Door> allAvailableDoorsInWall = GetPossibleDoorsFromFromWall(Walls[i]);
+            List<Door> allAvailableDoorsInWall = GetPossibleDoorsFromFromWall(Floors[i]);
             
             Door firstDoorsUp = RandomlySelectDoors(allAvailableDoorsInWall);
 
 
 
-            for(int j = 0; j < Walls[i].Doors.Count; j++)
+            for(int j = 0; j < Floors[i].Doors.Count; j++)
             {
                 List<Door> doorsAbove = new List<Door>();
                 List<Door> doorsSameFloor = new List<Door>();
@@ -33,15 +34,15 @@ public class WallManager : MonoBehaviour
 
                 if (i != 0)
                 {
-                    doorsUnder = Walls[i - 1].Doors.Where(door => !door.IsAssignedTo).ToList();
+                    doorsUnder = Floors[i - 1].Doors.Where(door => !door.IsAssignedTo).ToList();
                 }
 
-                if(i != Walls.Count - 1)
+                if(i != Floors.Count - 1)
                 {
-                    doorsAbove = Walls[i + 1].Doors.Where(door => !door.IsAssignedTo).ToList();
+                    doorsAbove = Floors[i + 1].Doors.Where(door => !door.IsAssignedTo).ToList();
                 }
 
-                doorsSameFloor = Walls[i].Doors.Where(door => !door.IsAssignedTo).ToList();
+                doorsSameFloor = Floors[i].Doors.Where(door => !door.IsAssignedTo).ToList();
 
                 // At least one doors to floor up
 
@@ -64,12 +65,12 @@ public class WallManager : MonoBehaviour
         doorsTo.IsAssignedTo = true;
     }
 
-    public List<Door> GetPossibleDoorsToFromWall(Wall wall)
+    public List<Door> GetPossibleDoorsToFromWall(Floor floor)
     {
-        return wall.Doors.Where(door => !door.IsAssignedTo).ToList();
+        return floor.Doors.Where(door => !door.IsAssignedTo).ToList();
     }
-    public List<Door> GetPossibleDoorsFromFromWall(Wall wall)
+    public List<Door> GetPossibleDoorsFromFromWall(Floor floor)
     {
-        return wall.Doors.Where(door => !door.IsAssignedFrom).ToList();
+        return floor.Doors.Where(door => !door.IsAssignedFrom).ToList();
     }
 }
