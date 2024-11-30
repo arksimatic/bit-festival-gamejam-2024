@@ -8,7 +8,7 @@ public class SecondPlayer : MonoBehaviour
     [SerializeField] private SecondPlayerInput Input;
 
     private Door _doorToInteract;
-    private void Awake()
+    private void Start()
     {
         transform.position = new Vector3(StartX, 0, 0);
         Input.OnInteract += InteractOnstarted;
