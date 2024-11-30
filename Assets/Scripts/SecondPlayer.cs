@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class SecondPlayer : MonoBehaviour
 {
     [SerializeField] private float Speed;
     [SerializeField] private float StartX;
-    [SerializeField] private GamePlayerInput GamePlayerInput;
+    [SerializeField] private SecondPlayerInput Input;
 
     private Door _doorToInteract;
     private void Awake()
     {
         transform.position = new Vector3(StartX, 0, 0);
-        GamePlayerInput.OnInteract += InteractOnstarted;
+        Input.OnInteract += InteractOnstarted;
     }
     private void InteractOnstarted(object sender, EventArgs e)
     {
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     }
 
 
-    void Update()
+    private void Update()
     {
         HandleMovement();
     }
@@ -29,11 +29,11 @@ public class Player : MonoBehaviour
         {
             transform.position = _doorToInteract.TargetDoor.transform.position;
         }
-        
+
     }
     private void HandleMovement()
     {
-        var horizontalMovement = GamePlayerInput.ReadHorizontalMovement();
+        var horizontalMovement = Input.ReadHorizontalMovement();
 
         var movement = new Vector3(horizontalMovement, 0.0f, transform.position.z);
 
