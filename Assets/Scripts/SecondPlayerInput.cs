@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 
 public class SecondPlayerInput : MonoBehaviour
 {
-    public EventHandler OnInteract;
     private InputSystem_Actions _input;
+    public EventHandler OnInteract;
 
 
     private void Awake()
@@ -20,6 +20,6 @@ public class SecondPlayerInput : MonoBehaviour
     }
     public float ReadHorizontalMovement()
     {
-        return _input.Player.Move.ReadValue<Vector2>().x;
+        return _input.SecondPlayer.Move.ReadValue<Vector2>().x;
     }
 }
