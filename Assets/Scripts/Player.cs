@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     {
         _input = new InputSystem_Actions();
         _input.Player.Enable();
+        transform.position = new Vector3(0, 0, 0);
     }
     void Update()
     {

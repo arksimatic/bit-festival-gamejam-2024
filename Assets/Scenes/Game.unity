@@ -417,6 +417,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Floors: []
   Doors: []
+  GenerateFloors: 1
+  FloorNumber: 10
+  FloorPrefab: {fileID: 4798336613318694056, guid: d637f2bd8011c474388f89ee5854db52, type: 3}
+  startPosition: 0
+  floorHeight: 5
+  heightOffset: 0.1
 --- !u!4 &1834971008
 Transform:
   m_ObjectHideFlags: 0
@@ -483,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 4798336613318694056, guid: d637f2bd8011c474388f89ee5854db52, type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798336613318694056, guid: d637f2bd8011c474388f89ee5854db52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

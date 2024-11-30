@@ -6,8 +6,31 @@ using Random = UnityEngine.Random;
 
 public class FloorManager : MonoBehaviour
 {
+
     public List<Floor> Floors = new();
     public List<Door> Doors = new();
+    [SerializeField] private bool GenerateFloors;
+    [SerializeField] private int FloorNumber;
+
+    [SerializeField] private GameObject FloorPrefab;
+
+    [SerializeField] private float startPosition;
+    [SerializeField] private float floorHeight;
+    [SerializeField] private float heightOffset;
+
+
+    public void Awake()
+    {
+        if (GenerateFloors)
+        {
+            for (var i = 0; i < FloorNumber; i++)
+            {
+                var position = new Vector3(0, startPosition + i * (floorHeight + heightOffset), 0);
+                var floor = Instantiate(FloorPrefab, position, Quaternion.identity);
+                Floors.Add(floor.GetComponent<Floor>());
+            }
+        }
+    }
 
     public void Start()
     {
