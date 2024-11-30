@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -95,8 +96,32 @@ public class FloorManager : MonoBehaviour
     {
         Int32 amountOfAssignments = Math.Min(doorsFrom.Count, doorsTo.Count);
 
+        if (amountOfAssignments == 0)
+            return;
+
+        if(doorsFrom.Count == 1  && doorsTo.Count == 1)
+            Debug.LogWarning("Only one assignment left,  I had to allow it at this point");
+
+        while(IsAnySelfAssignment(doorsFrom, doorsTo))
+        {
+            doorsFrom.Shuffle();
+            doorsTo.Shuffle();
+        }
+
         for (int i = 0; i < amountOfAssignments; i++)
             AssignDoors(doorsFrom[i], doorsTo[i]);
+    }
+    public Boolean IsAnySelfAssignment(List<Door> doorsFrom, List<Door> doorsTo)
+    {
+        Int32 amountOfAssignments = Math.Min(doorsFrom.Count, doorsTo.Count);
+
+        for (int i = 0; i < amountOfAssignments; i++)
+        {
+            if (doorsFrom[i] == doorsTo[i])
+                return true;
+        }
+
+        return false;
     }
     public List<Door> GetPossibleDoorsTo(Floor floor)
     {
