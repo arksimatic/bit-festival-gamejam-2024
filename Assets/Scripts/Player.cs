@@ -2,23 +2,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float speed;
+    private InputSystem_Actions input;
+    private void Awake()
     {
-        
+        input = new InputSystem_Actions();
+        input.Player.Enable();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // Get input from arrow keys and WASD keys
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        HandleMovement();
+        HandleInteraction();
+    }
+    private void HandleInteraction()
+    {
+        var isInteract = input.Player.Interact.IsPressed();
 
-        // Create a new vector for movement
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        Debug.Log($"Is interact: {isInteract}");
+    }
+    private void HandleMovement()
+    {
 
-        // Apply the movement to the player's position
-        transform.Translate(movement * Time.deltaTime);
+        var horizontalMovement = input.Player.Move.ReadValue<Vector2>().x;
+
+        var movement = new Vector3(horizontalMovement, 0.0f, transform.position.z);
+
+        transform.Translate(movement * (Time.deltaTime * speed));
     }
 }
