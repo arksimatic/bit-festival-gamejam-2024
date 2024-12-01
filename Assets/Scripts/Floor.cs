@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,27 +6,8 @@ using Random = UnityEngine.Random;
 public class Floor : MonoBehaviour
 {
     public List<Vector2> DoorPlaceholders;
-    public int DoorsToGenerate;
-    public List<Door> Doors = new();
     public int PlayerCount;
-
-
-    public void Awake()
-    {
-        Doors = this.GetComponentsInChildren<Door>().ToList();
-
-    }
-    public void Start()
-    {
-        GenerateDoors(4);
-        Doors = this.GetComponentsInChildren<Door>().ToList();
-
-        foreach (var door in Doors)
-        {
-            door.Floor = this;
-        }
-
-    }
+    public List<Door> Doors => GetComponentsInChildren<Door>().ToList();
 
     private void ShuffleDoor()
     {
@@ -46,15 +26,7 @@ public class Floor : MonoBehaviour
         LeanTween.move(second.gameObject, firstPos, 1f).setEaseInOutSine();
 
     }
-    public void GenerateDoors(Int32 doorAmount)
-    {
-        for (int i = 0; i < doorAmount; i++)
-            GenerateDoorAtEmptyPlaceholder();
-    }
-    public void GenerateDoorAtEmptyPlaceholder()
-    {
-        Doors = this.GetComponentsInChildren<Door>().ToList();
-    }
+
 
     public void StartShuffle()
     {

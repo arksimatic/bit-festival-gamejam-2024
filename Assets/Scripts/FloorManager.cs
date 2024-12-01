@@ -49,7 +49,7 @@ public class FloorManager : MonoBehaviour
         {
             Int32 amountOfDoorsToGenerate = Random.Range(MinDoorsPerFloor, MaxDoorsPerFloor + 1);
             GenerateDoors(floor, amountOfDoorsToGenerate);
-        }   
+        }
     }
     public void GenerateDoors(Floor floor, Int32 doorAmount)
     {
@@ -69,6 +69,7 @@ public class FloorManager : MonoBehaviour
     public void GenerateDoor(Floor floor, Vector2 position)
     {
         var doorInstance = Instantiate(DoorPrefab);
+        doorInstance.GetComponent<Door>().Floor = floor;
         doorInstance.transform.SetParent(floor.transform);
         doorInstance.transform.localPosition = position;
     }
