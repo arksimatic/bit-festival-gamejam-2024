@@ -14,11 +14,11 @@ public class Floor : MonoBehaviour
 
     private void Update()
     {
-        // if (Rozdzielnik.sprite.name.Contains("tlo2"))
-        // {
-        //     Rozdzielnik.enabled = false;
-        //     AnimatedSprite.SetActive(true);
-        // }
+        if (Background.sprite.name.Contains("tlo2"))
+        {
+            Background.enabled = false;
+            AnimatedSprite.SetActive(true);
+        }
     }
 
     private void ShuffleDoor()

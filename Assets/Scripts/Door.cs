@@ -14,7 +14,8 @@ public class Door : MonoBehaviour
     public Boolean IsAssignedFrom => TargetDoor != null;
     public void Start()
     {
-        DoorDebugText.GetComponent<TextMeshPro>().text = "test";
+        DoorDebugText.GetComponent<TextMeshPro>().enabled = false;
+
     }
     public void OpenClose()
     {
@@ -24,6 +25,7 @@ public class Door : MonoBehaviour
     {
         this.GetComponentInChildren<SpriteRenderer>().sprite = Opened;
         yield return new WaitForSeconds(1.3f);
+
         this.GetComponentInChildren<SpriteRenderer>().sprite = Closed;
     }
 }
