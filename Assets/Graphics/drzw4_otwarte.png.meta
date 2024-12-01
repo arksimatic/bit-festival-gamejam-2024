@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9a79cd79278d541d2a538047451fb473
+guid: 47debe24769b47745922ec00724263fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7752081552507644268
-    second: winda_0
+      213: 2000326814116769105
+    second: drzw4_otwarte_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: winda_0
+      name: drzw4_otwarte_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4965ce876e21b6490800000000000000
-      internalID: -7752081552507644268
+      spriteID: 15d6e16a3a692cb10800000000000000
+      internalID: 2000326814116769105
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      winda_0: -7752081552507644268
+      drzw4_otwarte_0: 2000326814116769105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

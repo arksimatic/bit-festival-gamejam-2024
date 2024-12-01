@@ -305,6 +305,7 @@ MonoBehaviour:
   DoorDebugText: {fileID: 2631196898178253725}
   IsAssignedTo: 0
   TargetDoor: {fileID: 0}
+  Floor: {fileID: 0}
 --- !u!50 &1582267554386750133
 Rigidbody2D:
   serializedVersion: 4
@@ -359,7 +360,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4744137521011946242}
@@ -408,7 +409,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 6160453956490793955, guid: 0dd7ba6d9707b4f0c8549d33431b6556, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
