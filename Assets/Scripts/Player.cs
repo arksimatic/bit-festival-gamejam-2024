@@ -46,12 +46,13 @@ public class Player : MonoBehaviour
     {
         if (_doorToInteract != null)
         {
-            StartCoroutine(nameof(_doorToInteract.OpenWithDelayedClose));
-            var targetPosition = _doorToInteract.TargetDoor.transform.position;
+            _doorToInteract.OpenClose();
+            var targetDoor = _doorToInteract.TargetDoor;
             canMove = false;
             LeanTween.scale(gameObject, Vector3.zero, 0.5f).setEaseInOutSine().setOnComplete(() =>
             {
-                transform.position = targetPosition;
+                transform.position = targetDoor.transform.position;
+                targetDoor.OpenClose();
                 LeanTween.scale(gameObject, Vector3.one, 0.5f).setEaseInOutSine().setOnComplete(() =>
                 {
                     canMove = true;
