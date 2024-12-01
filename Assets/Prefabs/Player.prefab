@@ -48,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65202f169d8b5b64a9681b980928b28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4
+  Speed: 8
   StartX: -1
   GamePlayerInput: {fileID: 4802061502434753882}
   _currentFloor: {fileID: 0}
   SpriteRenderer: {fileID: 8303795015835721412}
+  rotationSpeed: 10
 --- !u!50 &1524325408134840549
 Rigidbody2D:
   serializedVersion: 5
@@ -61,7 +62,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6352635711327932981}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -110,7 +111,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -148,7 +149,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4116159233186103794, guid: 7b6ff5716e43a46948c44c332e453b08, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4759985903053667422, guid: 7b6ff5716e43a46948c44c332e453b08, type: 3}
       propertyPath: m_Name
