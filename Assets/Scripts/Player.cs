@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerInput GamePlayerInput;
     [SerializeField] private Floor _currentFloor;
     private Door _doorToInteract;
+    private bool canMove;
 
     private void Start()
     {
         transform.position = new Vector3(StartX, 0, 0);
         GamePlayerInput.OnInteract += InteractOnstarted;
+        canMove = true;
     }
 
     void Update()
@@ -44,7 +46,18 @@ public class Player : MonoBehaviour
     {
         if (_doorToInteract != null)
         {
-            transform.position = _doorToInteract.TargetDoor.transform.position;
+            var targetPosition = _doorToInteract.TargetDoor.transform.position;
+            canMove = false;
+            LeanTween.scale(gameObject, Vector3.zero, 0.5f).setEaseInOutSine().setOnComplete(() =>
+            {
+                transform.position = targetPosition;
+                LeanTween.scale(gameObject, Vector3.one, 0.5f).setEaseInOutSine().setOnComplete(() =>
+                {
+                    canMove = true;
+                });
+            });
+
+
             if (_currentFloor != null)
             {
                 _currentFloor.PlayerCount--;
@@ -60,12 +73,17 @@ public class Player : MonoBehaviour
         }
 
     }
+
     private void HandleMovement()
     {
-        var horizontalMovement = GamePlayerInput.ReadHorizontalMovement();
+        if (canMove)
+        {
+            var horizontalMovement = GamePlayerInput.ReadHorizontalMovement();
 
-        var movement = new Vector3(horizontalMovement, 0.0f, transform.position.z);
+            var movement = new Vector3(horizontalMovement, 0.0f, transform.position.z);
 
-        transform.Translate(movement * (Time.deltaTime * Speed));
+            transform.Translate(movement * (Time.deltaTime * Speed));
+        }
+
     }
 }
