@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SpriteRenderer SpriteRenderer;
 
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotationSpeed = 10f;
 
 
     private Door _doorToInteract;
@@ -92,12 +92,16 @@ public class Player : MonoBehaviour
             {
                 SpriteRenderer.flipX = false;
 
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 6f), Time.deltaTime * rotationSpeed);
+                SpriteRenderer.transform.rotation = Quaternion.Lerp(SpriteRenderer.transform.rotation, Quaternion.Euler(0, 0, 10f), Time.deltaTime * rotationSpeed);
             }
             else if (horizontalMovement > 0)
             {
                 SpriteRenderer.flipX = true;
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -6f), Time.deltaTime * rotationSpeed);
+                SpriteRenderer.transform.rotation = Quaternion.Lerp(SpriteRenderer.transform.rotation, Quaternion.Euler(0, 0, -10f), Time.deltaTime * rotationSpeed);
+            }
+            else
+            {
+                SpriteRenderer.transform.rotation = Quaternion.Lerp(SpriteRenderer.transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
             }
 
 
