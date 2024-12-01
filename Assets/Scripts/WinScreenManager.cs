@@ -12,6 +12,7 @@ public class WinScreenManager : MonoBehaviour
 
     public void OnRestartGame()
     {
+        Debug.Log("Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
