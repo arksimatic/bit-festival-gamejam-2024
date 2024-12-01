@@ -4,16 +4,10 @@ public class ExitDoor : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.attachedRigidbody.gameObject.TryGetComponent<Player>(out _))
+        if (other.attachedRigidbody.gameObject.TryGetComponent<Player>(out var player))
         {
-            Debug.Log("Player RED wins");
+            var playerName = player.gameObject.name;
+            FindFirstObjectByType<WinScreenManager>().OnShowWinScreen(playerName);
         }
-
-        if (other.attachedRigidbody.gameObject.TryGetComponent<SecondPlayer>(out _))
-        {
-            Debug.Log("Player BLUE wins");
-        }
-
-        Application.Quit();
     }
 }

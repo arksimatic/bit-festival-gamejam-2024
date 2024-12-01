@@ -1,13 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class WinScreenManager : MonoBehaviour
 {
     public GameObject Panel;
-    public void OnShowWinScreen()
+    public TMP_Text text;
+    public void OnShowWinScreen(string playerName)
     {
+        Debug.Log("Siema");
         Panel.SetActive(true);
+        text.text = $"Gracz: {playerName} wyszedł z pętli!";
     }
 
     public void OnRestartGame()
