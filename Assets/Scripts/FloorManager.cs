@@ -9,6 +9,8 @@ public class FloorManager : MonoBehaviour
     public Int32 MinDoorsPerFloor;
     public Int32 MaxDoorsPerFloor;
     public GameObject DoorPrefab;
+    public List<Sprite> DoorSprites;
+    public List<Sprite> FloorSprites;
     public List<Floor> Floors = new();
     public List<Door> Doors = new();
     [SerializeField] private bool GenerateFloors;
@@ -39,10 +41,19 @@ public class FloorManager : MonoBehaviour
 
     public void Start()
     {
+        AssignFloorSprites();
         GenerateDoors();
         AssignDoors();
     }
 
+    public void AssignFloorSprites()
+    {
+        foreach (var floor in Floors)
+        {
+            FloorSprites.Shuffle();
+            floor.GetComponentInChildren<SpriteRenderer>().sprite = FloorSprites.First();
+        }
+    }
     public void GenerateDoors()
     {
         foreach (var floor in Floors)
@@ -56,8 +67,9 @@ public class FloorManager : MonoBehaviour
         // if using placeholders
         List<Vector2> doorsPossiblePossitions = floor.DoorPlaceholders;
         doorsPossiblePossitions.Shuffle();
+        DoorSprites.Shuffle();
         for (int i = 0; i < doorAmount; i++)
-            GenerateDoor(floor, doorsPossiblePossitions[i]);
+            GenerateDoor(floor, doorsPossiblePossitions[i], DoorSprites[i]);
 
         // if using offset
         //Single width = floor.DoorsOffset * doorAmount;
@@ -66,12 +78,13 @@ public class FloorManager : MonoBehaviour
         //    GenerateDoor(floor, new Vector2(position, 0));
         //}
     }
-    public void GenerateDoor(Floor floor, Vector2 position)
+    public void GenerateDoor(Floor floor, Vector2 position, Sprite sprite)
     {
         var doorInstance = Instantiate(DoorPrefab);
         doorInstance.GetComponent<Door>().Floor = floor;
         doorInstance.transform.SetParent(floor.transform);
         doorInstance.transform.localPosition = position;
+        doorInstance.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
     }
 
     public void AssignDoors()
