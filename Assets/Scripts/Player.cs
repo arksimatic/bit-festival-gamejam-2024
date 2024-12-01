@@ -57,18 +57,8 @@ public class Player : MonoBehaviour
                 });
             });
 
-
-            if (_currentFloor != null)
-            {
-                _currentFloor.PlayerCount--;
-            }
-
             _currentFloor = _doorToInteract.TargetDoor.Floor;
-            if (_currentFloor != null)
-            {
-                _currentFloor.PlayerCount++;
-                _currentFloor.StartShuffle();
-            }
+            _currentFloor.StartShuffle();
 
         }
 
