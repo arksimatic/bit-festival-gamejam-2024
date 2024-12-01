@@ -40,23 +40,33 @@ public class Player : MonoBehaviour
     }
     private void InteractOnstarted(object sender, EventArgs e)
     {
-        HandleInteraction();
+        if (canMove)
+        {
+            HandleInteraction();
+        }
+
     }
     private void HandleInteraction()
     {
         if (_doorToInteract != null)
         {
-            StartCoroutine(nameof(_doorToInteract.OpenWithDelayedClose));
-            var targetPosition = _doorToInteract.TargetDoor.transform.position;
             canMove = false;
+            _doorToInteract.OpenWithClose();
+            var targetPosition = _doorToInteract.TargetDoor.transform.position;
+            LeanTween.moveY(gameObject, gameObject.transform.position.y + 1f, 0.49f).setEaseInOutSine();
+            var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            var color = spriteRenderer.color;
+            LeanTween.value(gameObject, color, Color.black, 0.5f).setOnUpdate(color1 => { spriteRenderer.color = color1; }).setEaseInOutSine();
             LeanTween.scale(gameObject, Vector3.zero, 0.5f).setEaseInOutSine().setOnComplete(() =>
             {
                 transform.position = targetPosition;
+                LeanTween.value(gameObject, Color.black, color, 0.5f).setOnUpdate(color1 => { spriteRenderer.color = color1; }).setEaseInOutSine();
                 LeanTween.scale(gameObject, Vector3.one, 0.5f).setEaseInOutSine().setOnComplete(() =>
                 {
                     canMove = true;
                 });
             });
+
 
             _currentFloor = _doorToInteract.TargetDoor.Floor;
             _currentFloor.StartShuffle();

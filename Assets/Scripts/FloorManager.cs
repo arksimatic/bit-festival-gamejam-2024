@@ -52,7 +52,7 @@ public class FloorManager : MonoBehaviour
         foreach (var floor in Floors)
         {
             FloorSprites.Shuffle();
-            floor.GetComponentInChildren<SpriteRenderer>().sprite = FloorSprites.First();
+            floor.Background.sprite = FloorSprites.First();
         }
     }
     public void GenerateDoors()
