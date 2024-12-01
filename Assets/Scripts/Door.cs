@@ -16,17 +16,14 @@ public class Door : MonoBehaviour
     {
         DoorDebugText.GetComponent<TextMeshPro>().text = "test";
     }
-
-    public void OpenWithClose()
+    public void OpenClose()
     {
-        StartCoroutine(OpenWithDelayedClose());
+        StartCoroutine(nameof(OpenWithDelayedClose));
     }
-
     public IEnumerator OpenWithDelayedClose()
     {
-        GetComponentInChildren<SpriteRenderer>().sprite = Opened;
+        this.GetComponentInChildren<SpriteRenderer>().sprite = Opened;
         yield return new WaitForSeconds(1.3f);
-
-        GetComponentInChildren<SpriteRenderer>().sprite = Closed;
+        this.GetComponentInChildren<SpriteRenderer>().sprite = Closed;
     }
 }

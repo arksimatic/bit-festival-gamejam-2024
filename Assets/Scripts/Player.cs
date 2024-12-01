@@ -50,16 +50,17 @@ public class Player : MonoBehaviour
     {
         if (_doorToInteract != null)
         {
+            _doorToInteract.OpenClose();
+            var targetDoor = _doorToInteract.TargetDoor;
             canMove = false;
-            _doorToInteract.OpenWithClose();
-            var targetPosition = _doorToInteract.TargetDoor.transform.position;
             LeanTween.moveY(gameObject, gameObject.transform.position.y + 1f, 0.49f).setEaseInOutSine();
             var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             var color = spriteRenderer.color;
             LeanTween.value(gameObject, color, Color.black, 0.5f).setOnUpdate(color1 => { spriteRenderer.color = color1; }).setEaseInOutSine();
             LeanTween.scale(gameObject, Vector3.zero, 0.5f).setEaseInOutSine().setOnComplete(() =>
             {
-                transform.position = targetPosition;
+                transform.position = targetDoor.transform.position;
+                targetDoor.OpenClose();
                 LeanTween.value(gameObject, Color.black, color, 0.5f).setOnUpdate(color1 => { spriteRenderer.color = color1; }).setEaseInOutSine();
                 LeanTween.scale(gameObject, Vector3.one, 0.5f).setEaseInOutSine().setOnComplete(() =>
                 {
