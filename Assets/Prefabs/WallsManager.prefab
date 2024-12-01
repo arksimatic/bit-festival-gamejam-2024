@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1112255698623613060}
   - component: {fileID: 2657343813591580672}
+  - component: {fileID: -2158791843770796925}
   m_Layer: 0
   m_Name: WallsManager
   m_TagString: Untagged
@@ -47,20 +48,7 @@ MonoBehaviour:
   MinDoorsPerFloor: 4
   MaxDoorsPerFloor: 6
   DoorPrefab: {fileID: 8684017325532809233, guid: 883116a9c13d4954c9d6153ae496a49b, type: 3}
-  DoorOpenSprites:
-  - {fileID: -5353992321093247142, guid: 75d6abc0aedc0f54ca76d75551a5908b, type: 3}
-  - {fileID: 1538205307299565885, guid: bf10fe895b43a454f9471f3d0feb0183, type: 3}
-  - {fileID: -4863946249255240833, guid: ca1e7dd4ca191b44bb7bafe47c730180, type: 3}
-  - {fileID: -5353992321093247142, guid: 75d6abc0aedc0f54ca76d75551a5908b, type: 3}
-  - {fileID: 1538205307299565885, guid: bf10fe895b43a454f9471f3d0feb0183, type: 3}
-  - {fileID: -4863946249255240833, guid: ca1e7dd4ca191b44bb7bafe47c730180, type: 3}
-  DoorClosedSprites:
-  - {fileID: -8962669633902763662, guid: 8d2fe2524d53949ab9dfe3e8eab628b0, type: 3}
-  - {fileID: -2288127704199023013, guid: 3d002048286de46d2a134d29cd2f91d3, type: 3}
-  - {fileID: 6160453956490793955, guid: 0dd7ba6d9707b4f0c8549d33431b6556, type: 3}
-  - {fileID: -8962669633902763662, guid: 8d2fe2524d53949ab9dfe3e8eab628b0, type: 3}
-  - {fileID: -2288127704199023013, guid: 3d002048286de46d2a134d29cd2f91d3, type: 3}
-  - {fileID: 6160453956490793955, guid: 0dd7ba6d9707b4f0c8549d33431b6556, type: 3}
+  DoorKindManager: {fileID: 0}
   FloorSprites:
   - {fileID: 1186302381934012540, guid: 5869ae5ddfbe74241bee323f6558858a, type: 3}
   - {fileID: 2445597069629092115, guid: c64f7f5fdfdc7384693eada365d812eb, type: 3}
@@ -73,3 +61,24 @@ MonoBehaviour:
   startPosition: 0
   floorHeight: 4.9
   heightOffset: 0.1
+--- !u!114 &-2158791843770796925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118970095606246120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f8babf29b9dce429119fd19a03a6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door1Closed: {fileID: -8962669633902763662, guid: 8d2fe2524d53949ab9dfe3e8eab628b0, type: 3}
+  Door2Closed: {fileID: -2288127704199023013, guid: 3d002048286de46d2a134d29cd2f91d3, type: 3}
+  Door3Closed: {fileID: 6160453956490793955, guid: 0dd7ba6d9707b4f0c8549d33431b6556, type: 3}
+  Door1Open: {fileID: -5353992321093247142, guid: 75d6abc0aedc0f54ca76d75551a5908b, type: 3}
+  Door2Open: {fileID: 1538205307299565885, guid: bf10fe895b43a454f9471f3d0feb0183, type: 3}
+  Door3Open: {fileID: -4863946249255240833, guid: ca1e7dd4ca191b44bb7bafe47c730180, type: 3}
+  Door1ClosedOther: []
+  Door2ClosedOther: []
+  Door3ClosedOther: []
