@@ -1,10 +1,16 @@
 using System;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public TextMeshPro DoorDebugText;
     public Boolean IsAssignedTo = false;
-    public Boolean IsAssignedFrom => TargetDoor != null;
     public Door TargetDoor = null;
+    public Floor Floor;
+    public Boolean IsAssignedFrom => TargetDoor != null;
+    public void Start()
+    {
+        DoorDebugText.GetComponent<TextMeshPro>().text = "test";
+    }
 }
