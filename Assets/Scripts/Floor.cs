@@ -6,8 +6,20 @@ using Random = UnityEngine.Random;
 public class Floor : MonoBehaviour
 {
     public List<Vector2> DoorPlaceholders;
+    public SpriteRenderer Background;
+    public SpriteRenderer Rozdzielnik;
+    public GameObject AnimatedSprite;
     private bool _isShuffleStarted;
     public List<Door> Doors => GetComponentsInChildren<Door>().ToList();
+
+    private void Update()
+    {
+        // if (Rozdzielnik.sprite.name.Contains("tlo2"))
+        // {
+        //     Rozdzielnik.enabled = false;
+        //     AnimatedSprite.SetActive(true);
+        // }
+    }
 
     private void ShuffleDoor()
     {
@@ -27,7 +39,6 @@ public class Floor : MonoBehaviour
         _isShuffleStarted = false;
 
     }
-
 
     public void StartShuffle()
     {

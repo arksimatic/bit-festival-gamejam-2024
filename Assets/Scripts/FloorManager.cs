@@ -9,8 +9,11 @@ public class FloorManager : MonoBehaviour
     public Int32 MinDoorsPerFloor;
     public Int32 MaxDoorsPerFloor;
     public GameObject DoorPrefab;
-    public List<Sprite> DoorOpenSprites;
-    public List<Sprite> DoorClosedSprites;
+
+    //public List<Sprite> DoorOpenSprites;
+    //public List<Sprite> DoorClosedSprites;
+    public DoorKindManager DoorKindManager => GetComponent<DoorKindManager>();
+
     public List<Sprite> FloorSprites;
     public List<Floor> Floors = new();
     public List<Door> Doors = new();
@@ -52,7 +55,7 @@ public class FloorManager : MonoBehaviour
         foreach (var floor in Floors)
         {
             FloorSprites.Shuffle();
-            floor.GetComponentInChildren<SpriteRenderer>().sprite = FloorSprites.First();
+            floor.Background.sprite = FloorSprites.First();
         }
     }
     public void GenerateDoors()
@@ -68,10 +71,17 @@ public class FloorManager : MonoBehaviour
         // if using placeholders
         List<Vector2> doorsPossiblePossitions = floor.DoorPlaceholders;
         doorsPossiblePossitions.Shuffle();
-        List<Tuple<Sprite, Sprite>> doorSprites = DoorOpenSprites.Zip(DoorClosedSprites, (a, b) => Tuple.Create(a, b)).ToList();
-        doorSprites.Shuffle();
+
+        //List<Tuple<Sprite, Sprite>> doorSprites = DoorOpenSprites.Zip(DoorClosedSprites, (a, b) => Tuple.Create(a, b)).ToList();
+        //doorSprites.Shuffle();
+
+        List<DoorKind> doorKinds = DoorKindManager.GetDoorKinds();
+
         for (int i = 0; i < doorAmount; i++)
-            GenerateDoor(floor, doorsPossiblePossitions[i], doorSprites[i].Item1, doorSprites[i].Item2);
+        {
+            doorKinds.Shuffle();
+            GenerateDoor(floor, doorsPossiblePossitions[i], doorKinds.First());
+        }
 
         // if using offset
         //Single width = floor.DoorsOffset * doorAmount;
@@ -80,15 +90,16 @@ public class FloorManager : MonoBehaviour
         //    GenerateDoor(floor, new Vector2(position, 0));
         //}
     }
-    public void GenerateDoor(Floor floor, Vector2 position, Sprite open, Sprite closed)
+    public void GenerateDoor(Floor floor, Vector2 position, DoorKind doorKind)
     {
         var doorInstance = Instantiate(DoorPrefab);
         doorInstance.GetComponent<Door>().Floor = floor;
         doorInstance.transform.SetParent(floor.transform);
         doorInstance.transform.localPosition = position;
-        doorInstance.GetComponentInChildren<SpriteRenderer>().sprite = closed;
-        doorInstance.GetComponent<Door>().Closed = closed;
-        doorInstance.GetComponent<Door>().Opened = open;
+
+        doorInstance.GetComponentInChildren<SpriteRenderer>().sprite = doorKind.DoorClosed;
+        doorInstance.GetComponent<Door>().Closed = doorKind.DoorClosed;
+        doorInstance.GetComponent<Door>().Opened = doorKind.DoorOpen;
     }
 
     public void AssignDoors()
