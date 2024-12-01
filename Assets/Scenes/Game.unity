@@ -171,9 +171,13 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1214634089248636752, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
+      propertyPath: StartX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214634089248636752, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
       propertyPath: GamePlayerInput
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 96708702}
     - target: {fileID: 1524325408134840549, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -204,37 +208,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4802061502434753882, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
-    - {fileID: 1214634089248636752, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6352635711327932981, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
       insertIndex: -1
       addedObject: {fileID: 96708702}
-    - targetCorrespondingSourceObject: {fileID: 6352635711327932981, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 96708701}
   m_SourcePrefab: {fileID: 100100000, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
 --- !u!1 &96708700 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6352635711327932981, guid: 3ddbec07411b4423f9c595c82eb04610, type: 3}
   m_PrefabInstance: {fileID: 96708699}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &96708701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96708700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1c635c5598415090f5374a1debcfc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 4
-  StartX: 1
-  Input: {fileID: 96708702}
 --- !u!114 &96708702
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,4 +17,10 @@ public static class Helpers
             list[n] = value;
         }
     }
+
+    public static T GetRandomElement<T>(this IList<T> list)
+    {
+        var index = rng.Next(list.Count);
+        return list[index];
+    }
 }

@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     public TextMeshPro DoorDebugText;
     public Boolean IsAssignedTo = false;
     public Door TargetDoor = null;
+    public Floor Floor;
     public Boolean IsAssignedFrom => TargetDoor != null;
     public void Start()
     {
