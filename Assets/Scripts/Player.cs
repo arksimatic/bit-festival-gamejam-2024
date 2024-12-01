@@ -7,6 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float StartX;
     [SerializeField] private PlayerInput GamePlayerInput;
     [SerializeField] private Floor _currentFloor;
+
+    [SerializeField] private SpriteRenderer SpriteRenderer;
+
+    [SerializeField] private float rotationSpeed;
+
+
     private Door _doorToInteract;
     private bool canMove;
 
@@ -50,10 +56,11 @@ public class Player : MonoBehaviour
     {
         if (_doorToInteract != null)
         {
+            var doorToInteract = _doorToInteract.transform.position;
             _doorToInteract.OpenClose();
             var targetDoor = _doorToInteract.TargetDoor;
             canMove = false;
-            LeanTween.moveY(gameObject, gameObject.transform.position.y + 1f, 0.49f).setEaseInOutSine();
+            LeanTween.move(gameObject, new Vector3(doorToInteract.x, gameObject.transform.position.y + 1f, 0f), 0.49f).setEaseInOutSine();
             var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             var color = spriteRenderer.color;
             LeanTween.value(gameObject, color, Color.black, 0.5f).setOnUpdate(color1 => { spriteRenderer.color = color1; }).setEaseInOutSine();
@@ -81,10 +88,23 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             var horizontalMovement = GamePlayerInput.ReadHorizontalMovement();
+            if (horizontalMovement < 0)
+            {
+                SpriteRenderer.flipX = false;
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 6f), Time.deltaTime * rotationSpeed);
+            }
+            else if (horizontalMovement > 0)
+            {
+                SpriteRenderer.flipX = true;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -6f), Time.deltaTime * rotationSpeed);
+            }
+
 
             var movement = new Vector3(horizontalMovement, 0.0f, transform.position.z);
 
             transform.Translate(movement * (Time.deltaTime * Speed));
+
         }
 
     }
