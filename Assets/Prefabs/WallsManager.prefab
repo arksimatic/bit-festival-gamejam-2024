@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8118970095606246120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112255698623613060}
+  - component: {fileID: 2657343813591580672}
+  m_Layer: 0
+  m_Name: WallsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112255698623613060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118970095606246120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2657343813591580672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118970095606246120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00247d156f1865a4f9423577e456f943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinDoorsPerFloor: 4
+  MaxDoorsPerFloor: 6
+  DoorPrefab: {fileID: 8684017325532809233, guid: 883116a9c13d4954c9d6153ae496a49b, type: 3}
+  DoorSprites:
+  - {fileID: 2000326814116769105, guid: 47debe24769b47745922ec00724263fa, type: 3}
+  - {fileID: -8962669633902763662, guid: 8d2fe2524d53949ab9dfe3e8eab628b0, type: 3}
+  - {fileID: -5353992321093247142, guid: 75d6abc0aedc0f54ca76d75551a5908b, type: 3}
+  - {fileID: -2288127704199023013, guid: 3d002048286de46d2a134d29cd2f91d3, type: 3}
+  - {fileID: 1538205307299565885, guid: bf10fe895b43a454f9471f3d0feb0183, type: 3}
+  - {fileID: -4863946249255240833, guid: ca1e7dd4ca191b44bb7bafe47c730180, type: 3}
+  FloorSprites:
+  - {fileID: 1186302381934012540, guid: 5869ae5ddfbe74241bee323f6558858a, type: 3}
+  - {fileID: 2445597069629092115, guid: c64f7f5fdfdc7384693eada365d812eb, type: 3}
+  - {fileID: 6871269767331365629, guid: 9aae80d5d530c0e49b46e4974013750c, type: 3}
+  Floors: []
+  Doors: []
+  GenerateFloors: 1
+  FloorNumber: 10
+  FloorPrefab: {fileID: 4798336613318694056, guid: d637f2bd8011c474388f89ee5854db52, type: 3}
+  startPosition: 0
+  floorHeight: 4.9
+  heightOffset: 0.1
