@@ -6,7 +6,9 @@ using Random = UnityEngine.Random;
 
 public class FloorManager : MonoBehaviour
 {
-
+    public Int32 MinDoorsPerFloor;
+    public Int32 MaxDoorsPerFloor;
+    public GameObject DoorPrefab;
     public List<Floor> Floors = new();
     public List<Door> Doors = new();
     [SerializeField] private bool GenerateFloors;
@@ -36,6 +38,42 @@ public class FloorManager : MonoBehaviour
     }
 
     public void Start()
+    {
+        GenerateDoors();
+        AssignDoors();
+    }
+
+    public void GenerateDoors()
+    {
+        foreach (var floor in Floors)
+        {
+            Int32 amountOfDoorsToGenerate = Random.Range(MinDoorsPerFloor, MaxDoorsPerFloor + 1);
+            GenerateDoors(floor, amountOfDoorsToGenerate);
+        }   
+    }
+    public void GenerateDoors(Floor floor, Int32 doorAmount)
+    {
+        // if using placeholders
+        List<Vector2> doorsPossiblePossitions = floor.DoorPlaceholders;
+        doorsPossiblePossitions.Shuffle();
+        for (int i = 0; i < doorAmount; i++)
+            GenerateDoor(floor, doorsPossiblePossitions[i]);
+
+        // if using offset
+        //Single width = floor.DoorsOffset * doorAmount;
+        //for(Single position = - width / 2; position <= width / 2; position += floor.DoorsOffset)
+        //{
+        //    GenerateDoor(floor, new Vector2(position, 0));
+        //}
+    }
+    public void GenerateDoor(Floor floor, Vector2 position)
+    {
+        var doorInstance = Instantiate(DoorPrefab);
+        doorInstance.transform.SetParent(floor.transform);
+        doorInstance.transform.localPosition = position;
+    }
+
+    public void AssignDoors()
     {
         for (int i = 0; i < Floors.Count; i++)
         {
@@ -74,7 +112,6 @@ public class FloorManager : MonoBehaviour
             AssignManyDoorsWithDifferentLengths(doorsSameFloorFrom, sameFloorAndUpperFloorCombined);
         }
     }
-
     public Door RandomlySelectDoors(List<Door> doors)
     {
         return doors[Random.Range(0, doors.Count)];
